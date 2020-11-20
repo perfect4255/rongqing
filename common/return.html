@@ -1,0 +1,34 @@
+<div class="sitefloat-bar">
+  <!-- code -->
+  <a href="javascript:void(0);" class="item item-code">
+    <i class="icon icon-icon-code1"></i>
+    <div class="hover-cont">
+      <img src="images/201905181322149118.png" alt="" />
+    </div>
+  </a>
+  <!-- tel -->
+  <a href="javascript:void(0)" class="item item-tel">
+    <i class="icon icon-icon-tel1"></i>
+    <div class="hover-cont">咨询电话：<br />400-000-5656</div>
+  </a>
+  <!-- return top -->
+  <a href="javascript:void(0);" class="item item-return-top" title="返回顶部">
+    <i class="icon icon-icon-back1"></i>
+  </a>
+</div>
+<script>
+  $(function () {
+    $(".sitefloat-bar")
+      .affix({
+        offset: {
+          top: 300,
+        },
+      })
+      .find(".item-return-top")
+      .on("click", function () {
+        $("html,body").animate({
+          scrollTop: 0,
+        },400);
+      });
+  });
+</script>

@@ -1,0 +1,327 @@
+<div class="carousel banner" id="slide">
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="images/201905220611585216.png" alt="" class="visible-xs">
+            <video muted src="video/201905210958052564.mp4" class="video-tvc hidden-xs" id="video-tvc">抱歉，您的浏览器不支持内嵌视频</video>
+            <div class="carousel-caption">
+                <h2 class="animated fadeInUp">中国智慧合同物流的领跑者</h2>
+                <small class="animated fadeInUp">China's Smart Contract Logistics Leader</small>
+            </div>
+        </div>
+        <div class="item">
+            <img src="images/201905211121034826.jpg" alt="">
+            <div class="carousel-caption">
+                <h2 class="animated">中国智慧合同物流的领跑者</h2>
+                <small class="animated">China's Smart Contract Logistics Leader</small>
+            </div>
+        </div>
+        <div class="item">
+            <img src="images/201905211121122491.jpg" alt="">
+            <div class="carousel-caption">
+                <h2 class="animated">中国智慧合同物流的领跑者</h2>
+                <small class="animated">China's Smart Contract Logistics Leader</small>
+            </div>
+        </div>
+    </div>
+    <ol class="carousel-indicators">
+        <li data-target="#slide" data-slide-to="0" class="active"></li>
+        <li data-target="#slide" data-slide-to="1"></li>
+        <li data-target="#slide" data-slide-to="2"></li>
+        <li class="play" id="carousel-control"></li>
+    </ol>
+</div>
+<script>
+    $(function() {
+        /**
+         * 视频:
+         *     方法  play()   pause()
+         *     属性  duration  currentTime
+         *     事件  canplay   ended   play ... 
+         */
+
+
+        // 获取视频 -- jquery对象
+        var $video = $('#video-tvc');
+
+        // 获取视频 -- dom对象
+        var video = $video[0];
+
+        //视频自动播放
+        video.play();
+
+        /*
+           timeupdate  视频播放时不断触发,
+           通过判断当前时间和结束时间之间的差来判断是否视频结束
+           如果视频结束,则轮播图跳到下一个
+           注意:  这里不能用全等 === 或 == 来判断视频结束
+           因为获取的时间存在精度问题
+
+           0.1 + 0.2 !== 0.3
+
+           ended  结束时触发
+           注意:   如果视频是循环播放的,则ended事件不会触发
+        */
+        $video.on('timeupdate.next', videoEnd);
+
+        // 获取轮播图容器
+        var $slide = $('#slide');
+
+        //获取轮播图的所有项
+        var $item = $slide.find('.item');
+
+        var play = {
+            interval: 3000,
+            pause: ''
+        };
+
+        var x1 = 0, // 按下时的坐标
+            x2 = 0, // 移动时的坐标
+            oldX = 0, // 移动时之前的坐标
+            slideDirection = '', // 移动的方向
+            slideRange = 50, // 移动切换的范围
+            opacityStep = 0.1; // 移动一步时透明度变化的步长
+
+
+        $slide
+            .carousel(play) // 轮播图初始化
+            .carousel('pause') // 轮播图暂停
+            // 轮播图切换完成时,如果是第一个则暂停轮播并重头播放视频,否则继续轮播并暂停视频
+            .on('slid.bs.carousel', carousel)
+            // 轮播图刚要切换时,让所有的item里的h2和small的fadeInUp类名移除掉
+            .on('slide.bs.carousel', function() {
+                $item.find('h2,small').removeClass('fadeInUp');
+            })
+            // 水平滑动,切换轮播图和改变透明度特效
+            .on('mousedown', function(e) {
+                slideState('pause');
+
+                oldX = x1 = e.pageX;
+
+                //移除timeupdate事件, 并且让视频结束后重新播放
+                if (getActiveItemIndex() === 0)
+                    $video.off('timeupdate.next').on('ended.continue', videoContinue);
+
+
+                slideDirection = ''; // 每次按下鼠标时都先清空方向
+
+                $(this)
+                    // 鼠标移动时
+                    .on('mousemove.opacity', function(e) {
+                        // 获取当前active元素
+                        var $activeItem = getActiveItem();
+                        // 获取active元素的opacity
+                        var activeItemOpacity = formatOpacity($activeItem.css('opacity'));
+                        // 移动时x轴坐标
+                        x2 = e.pageX;
+
+                        /* 
+                            根据移动时x轴的坐标x2和按下时x轴的坐标x1进行对比,
+                            来判断是向左滑动、向右滑动还是没有滑动
+                            slideRange 为滑动切换的范围
+                            slideDirection 为滑动切换的方向
+
+                            在一个方向上来回滑动时,透明度的值是变大还是变小,
+                            由移动时的坐标x2和之前的坐标oldX来判断
+                            opacityStep 为移动变化一步时透明度对应的变化
+                        */
+
+                        if (x2 - x1 > slideRange) { // 向右滑动
+                            slideDirection = 'right';
+
+                            var $nextItem = getNextItem();
+                            var nextItemOpacity = formatOpacity($nextItem.css('opacity'));
+
+                            if (x2 > oldX) {
+                                // console.log('→ 小');
+                                activeItemOpacity -= opacityStep;
+                                nextItemOpacity += opacityStep;
+                            } else if (x2 < oldX) {
+                                // console.log('→ 大');
+                                activeItemOpacity += opacityStep;
+                                nextItemOpacity -= opacityStep;
+                            }
+
+                            // 设置下一项的透明度
+                            $nextItem.css('opacity', formatOpacity(nextItemOpacity));
+
+                        } else if (x2 - x1 < slideRange) { // 向左滑动
+                            slideDirection = 'left';
+
+                            var $prevItem = getPrevItem();
+                            var prevItemOpacity = formatOpacity($prevItem.css('opacity'));
+
+                            if (x2 > oldX) {
+                                // console.log('← 大');
+                                activeItemOpacity += opacityStep;
+                                prevItemOpacity -= opacityStep;
+                            } else if (x2 < oldX) {
+                                // console.log('← 小'); 
+                                activeItemOpacity -= opacityStep;
+                                prevItemOpacity += opacityStep;
+                            }
+
+                            // 设置上一项的透明度
+                            $prevItem.css('opacity', formatOpacity(prevItemOpacity));
+
+                        } else {
+                            $item.css('opacity', 0); //所有项透明度设置为0
+                            activeItemOpacity = 1; //当前项透明度设置为1
+                        }
+
+                        // 设置当前项的透明度
+                        $activeItem.css('opacity', formatOpacity(activeItemOpacity));
+                        //更新上一个点
+                        oldX = x2;
+                    })
+                    // 鼠标离开容器时
+                    .on('mouseleave.reset', function(e) {
+                        $(this).off('mousemove.opacity');
+                        $item.prop('style', '');
+                        control();
+                    });
+            })
+            // 当鼠标抬起时,移除事件 并且清空内嵌样式opacity, 滑动切换
+            .on('mouseup', function(e) {
+                $(this).off('mousemove.opacity mouseleave.reset');
+                $item.prop('style', '');
+
+                if (slideDirection === 'right') { //右滑
+                    slideState('next');
+                } else if (slideDirection === 'left') { //左滑
+                    slideState('prev');
+                } else { //鼠标点击后没有滑动时
+                    if (getActiveItemIndex() === 0) {
+                        $video.off('ended.continue');
+                        if (!bindOnceEvent($video, 'timeupdate'))
+                            $video.on('timeupdate.next', videoEnd);
+                    } else {
+                        slideState(play);
+                    }
+                }
+            })
+            // 点击播放暂停按钮
+            .on('click', '#carousel-control', function() {
+                $(this).toggleClass('play pause');
+                control();
+            })
+            // 阻止按钮上的滑动系列事件的传播
+            .on('mousedown mouseup', '.carousel-indicators', function(e) {
+                e.stopPropagation();
+            })
+            //禁止拖拽
+            .find('video,img')
+            .on('dragstart', function(e) {
+                e.preventDefault();
+            });
+
+
+        // 获取当前项
+        function getActiveItem() {
+            return $('#slide .carousel-inner .item.active');
+        }
+
+        // 获取当前项的索引
+        function getActiveItemIndex() {
+            return getActiveItem().index();
+        }
+
+        // 获取上一项
+        function getPrevItem() {
+            var index = getActiveItemIndex();
+            index--;
+            if (index < 0) index = $item.length - 1;
+            return $item.eq(index);
+        }
+
+        // 获取下一项
+        function getNextItem() {
+            var index = getActiveItemIndex();
+            index++;
+            if (index === $item.length) index = 0;
+            return $item.eq(index);
+        }
+
+        // 格式化透明度
+        function formatOpacity(opacity) {
+            if (opacity > 1) opacity = 1;
+            if (opacity < 0) opacity = 0;
+            return Number(Number(opacity).toFixed(3));
+        }
+
+        // 轮播图状态
+        function slideState(state) {
+            return $slide.carousel(state);
+        }
+
+        // 视频结束
+        function videoEnd() {
+            if (video.currentTime > video.duration - 0.001) slideState('next');
+        }
+
+        //视频继续,循环播放
+        function videoContinue() {
+            video.currentTime = 0;
+            video.play();
+        }
+
+        // 轮播图切换完成时要做的事
+        function carousel() {
+            if (getActiveItemIndex() === 0) {
+                // 爆栈
+                setTimeout(function() {
+                    slideState('pause');
+                }, 0);
+                videoContinue();
+            } else {
+                slideState(play);
+                video.pause();
+            }
+
+            // $('#carousel-control').removeClass('pause').addClass('play');
+            $('#carousel-control')[0].className = 'play';
+            // 给标题添加入场动画
+            getActiveItem().find('h2,small').addClass('fadeInUp');
+        }
+
+        // 判断事件是否绑定
+        function bindOnceEvent(ele, events) {
+            return $._data(ele[0], "events")[events] ? true : false;
+        }
+
+        function control() {
+            if ($('#carousel-control').hasClass('play')) {
+                if (getActiveItemIndex() === 0) {
+                    $video.off('ended.continue');
+                    // 判断timeupdate事件是否绑定,如果没有,则绑定该事件
+                    if (!bindOnceEvent($video, 'timeupdate')) {
+                        $video.on('timeupdate.next', videoEnd);
+                    }
+                } else {
+                    slideState(play);
+                }
+            } else {
+                slideState('pause');
+                if (getActiveItemIndex() === 0) {
+                    $video.off('timeupdate.next');
+                    if (!bindOnceEvent($video, 'ended')) {
+                        $video.on('ended.continue', videoContinue);
+                    }
+                }
+            }
+        }
+
+
+        // var play = null;
+        // $video.on('canplay', function() {
+        //     play = {
+        //         interval: video.duration * 1000,
+        //         pause: ''
+        //     }
+        //     $slide.carousel(play);
+        // });
+
+        // $video.on('ended',function(){
+        //     $slide.carousel(next);
+        // })
+    });
+</script>

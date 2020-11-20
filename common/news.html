@@ -1,0 +1,62 @@
+<!--新闻滚动模块-->
+<div class="news-elm">
+  <div class="container">
+    <div class="news-scroll-box">
+      <h3>
+        <i class="icon icon-icon-img1"></i>
+        <span class="txt" id="news-title"></span>
+      </h3>
+      <div class="carousel slide" id="slide-news">
+        <ul class="carousel-inner"></ul>
+      </div>
+      <a href="news.html" class="more-btn"><span class="txt">查看更多</span></a>
+    </div>
+  </div>
+</div>
+<script>
+  $(function () {
+    // 轮播图初始化
+    $(".news-elm .carousel").carousel({
+      interval: 3000,
+    });
+
+    $.ajax({
+      type: "get",
+      url: "data/news.json",
+      success: function (response) {
+        render(response);
+      },
+    });
+
+    function render(res) {
+      var data = res.result;
+      var len = data.length;
+      var winWidth = $(window).width();
+      // 每页有多少条数据
+      var count = winWidth < 768 ? 1 : 3;
+      // 总页数
+      var pages = Math.ceil(len / count);
+      /**
+       *   pages      count
+       *   0          0  1  2
+       *   1          3  4  5
+       *   2          6  7  8
+       *  i*count+j
+       */
+      var items = "";
+      for (var i = 0; i < pages; i++) {
+        var a = "";
+        // 最后一页还剩多少数据
+        var max = i === pages - 1 ? len - i * count : count;
+
+        for (j = 0; j < max; j++) {
+          var news = data[i * count + j];
+          a += '<a href="' + news.url + '">' + news.title + "</a>";
+        }
+        items += '<li class="item ' + (i === 0 ? "active" : "") + '">' + a + "</li>";
+      }
+      $("#news-title").text(res.title);
+      $("#slide-news .carousel-inner").html(items);
+    }
+  });
+</script>

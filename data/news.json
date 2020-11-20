@@ -1,0 +1,52 @@
+{
+  "msg": "请求成功",
+  "state": "200",
+  "title": "新闻动态",
+  "result": [
+    {
+      "id": "001",
+      "url": "https://www.rokin.cn/news/detail-2558.html",
+      "title": "CJ荣庆物流2020年度全国运输线下招标公告"
+    },
+    {
+      "id": "002",
+      "url": "https://www.rokin.cn/news/detail-2557.html",
+      "title": "CJ荣庆物流2020年度食品&药品冷链班车推广公告"
+    },
+    {
+      "id": "003",
+      "url": "https://www.rokin.cn/news/detail-2555.html",
+      "title": "CJ荣庆太仓基地项目工程钢结构首吊仪式顺利举行"
+    },
+    {
+      "id": "004",
+      "url": "https://www.rokin.cn/news/detail-2554.html",
+      "title": "CJ荣庆物流通过国家高新技术企业认证"
+    },
+    {
+      "id": "005",
+      "url": "https://www.rokin.cn/news/detail-2553.html",
+      "title": "CJ荣庆物流参与制定的国家标准正式颁布实施"
+    },
+    {
+      "id": "006",
+      "url": "https://www.rokin.cn/news/detail-2552.html",
+      "title": "致希杰荣庆全体员工"
+    },
+    {
+      "id": "007",
+      "url": "https://www.rokin.cn/news/detail-2551.html",
+      "title": "驰援武汉，CJ荣庆全力保障医疗物资运送！"
+    },
+    {
+      "id": "008",
+      "url": "https://www.rokin.cn/news/detail-2550.html",
+      "title": "CJ荣庆物流关于“为武汉地区开通医疗物资运输通道”的公告"
+    },
+    {
+      "id": "009",
+      "url": "https://www.rokin.cn/news/detail-2546.html",
+      "title": "火速驰援—CJ荣庆连夜运输410件御寒大衣到武汉一线医护人员手中"
+    }
+  ]
+}

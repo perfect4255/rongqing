@@ -1,0 +1,56 @@
+{
+  "state": "200",
+  "message": "成功",
+  "data": [
+    {
+      "id": "1",
+      "post": "CJ荣庆驾驶员",
+      "treatment": "面议",
+      "address": "河北省三河市",
+      "education": "学历不限",
+      "experience": "经验不限",
+      "number": "1人",
+      "date": "2019-05-11"
+    },
+    {
+      "id": "2",
+      "post": "CJ荣庆现场监理",
+      "treatment": "面议",
+      "address": "河北省三河市",
+      "education": "学历不限",
+      "experience": "经验不限",
+      "number": "1人",
+      "date": "2018-11-16"
+    },
+    {
+      "id": "3",
+      "post": "CJ荣庆仓管员",
+      "treatment": "面议",
+      "address": "河北省三河市",
+      "education": "学历不限",
+      "experience": "经验不限",
+      "number": "5人",
+      "date": "2018-11-16"
+    },
+    {
+      "id": "4",
+      "post": "CJ荣庆公务车司机",
+      "treatment": "面议",
+      "address": "广州省广州市",
+      "education": "学历不限",
+      "experience": "经验不限",
+      "number": "5人",
+      "date": "2018-11-16"
+    },
+    {
+      "id": "5",
+      "post": "CJ荣庆叉车工",
+      "treatment": "面议",
+      "address": "广州省广州市",
+      "education": "学历不限",
+      "experience": "经验不限",
+      "number": "1人",
+      "date": "2018-11-16"
+    }
+  ]
+}

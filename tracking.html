@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="希杰物流，荣庆物流" />
+    <meta name="description" content="荣庆物流-中国智慧物流的领跑者" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="css/icons.min.css">
+    <link rel="stylesheet" href="css/tracking.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.min.js"></script>
+    <!--[if lte IE 9]>
+        <script src="js/updateBrowser.js"></script>
+    <![endif]-->
+    <title>荣庆物流-中国智慧物流的领跑者</title>
+</head>
+
+<body>
+    <!-- 头部开始 -->
+    <header id="header"></header>
+    <!-- 头部结束 -->
+
+    <!-- banner开始 -->
+    <div class="column-banner banner-order-tracking">
+        <div class="txt-box animated fadeInUp">
+            <h2>货物追踪</h2>
+            <p class="txt">快速查询物流信息</p>
+        </div>
+    </div>
+    <!-- banner结束 -->
+
+    <div class="wrap pb40">
+        <div class="order-search-wrap">
+            <div class="text-tips">
+                <i class="icon-tracking"></i>
+                <p>请输入运单号或客户订单号进行查询，各单号通过换行进行区分（最多可输入50个单号进行查询，在线电子签单保留3年以内图像查询）</p>
+            </div>
+            <div class="sear-inner clearfix">
+                <div class="item">
+                    <div class="input-wrap">
+                        <div class="inner">
+                            <textarea id="textarea" name="" placeholder="请输入运单号或客户订单号" rows="" cols="" class="textarea"></textarea>
+                            <a href="javascript:void(0)" class="search-btn">
+                                <i class="icon-search-blue"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="reset">重置</a>
+                </div>
+                <div class="item veri-code-item">
+                    <div class="input-wrap">
+                        <div class="inner">
+                            <input name="" placeholder="请输入验证码" id="txtCode" class="input" maxlength="4">
+                        </div>
+                    </div>
+                    <div class="veri-code-img">
+                        <img id="img" alt="点击更新验证码" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAWCAYAAABXEBvcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHCSURBVFhH7Zc7jsMgEIb3dLlNLpELpM4lnCYXsJTKTerIdeQmXQ4wiw0b8xhmhoDtjcQvTQOYx8fwg3+gKksVYKYqwExVgJmqADMVBdidL7A72HGDztQ5evawd9pd4Hg3daPuN6duf32ZilQNcLT6meI84OWxuU7C2ntx6uFhWnMiMjAcCFu8Dxpr87i2ZL1MEYDeBr3LoxIAHEMIkTzC9sJ1eDsbZB++80sCDOfIjSEEqMI5SRExHviC5uR2ak/Oz77YgMsB7IP57Q4tNE/zCSqkH5VtXfJGaPGXSHBETJb52UekvA/QAS/2G2zhbeC/fH9rA1TCfM4to3fdP2Y6U63sFkEUHj3S/0ZtABC7aZ1gJh07wnY57zcygKX64a1ASwZQyc/ClIGiHmjbwyeZg0QRgGJbSQAYG1iS5msC5OcjzEAhxASAoZfRD9ZZawL81AMb5ITx2ZwIMOXmtSUBWCxz2E3FAS57ifypMMC5XJLJUoD/7R1oqwDA+Zv5GSM5KvjCkXegCrq/bwU4eZP/ZyN7KmghC0f/RLiFfyHAMsIADvjzipxXBTiHAujYwzsoT90S4KbCAYb/6mNQ1lASIMAvpd930w8YUuIAAAAASUVORK5CYII="></div>
+                </div>
+            </div>
+            <!--斜线背景-->
+            <div class="tilt-bg-box">
+                <div class="line-group rt">
+                    <div class="line"></div>
+                    <div class="line delay-100"></div>
+                    <div class="line delay-200"></div>
+                </div>
+                <div class="line-group lb">
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 查询结果列表 -->
+        <div class="order-search-result">
+            <h3>货物追踪结果</h3>
+            <div class="result-error"></div>
+            <div class="inner">
+                <div class="order-table"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 尾部开始 -->
+    <div id="footer"></div>
+    <!-- 尾部结束 -->
+
+    <!-- 悬浮窗开始 -->
+    <div id="return"></div>
+    <!-- 悬浮窗结束 -->
+    <script src="https://cdn.bootcss.com/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/public.js"></script>
+    <script>
+        $('.reset').click(function() {
+            $('#textarea').val('');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="希杰物流，荣庆物流" />
+    <meta name="description" content="荣庆物流-中国智慧物流的领跑者" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="css/icons.min.css">
+    <link rel="stylesheet" href="css/join.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.min.js"></script>
+    <!--[if lte IE 9]>
+        <script src="js/updateBrowser.js"></script>
+    <![endif]-->
+    <title>荣庆物流-中国智慧物流的领跑者</title>
+</head>
+
+<body>
+    <!-- 头部开始 -->
+    <div id="header"></div>
+    <!-- 头部结束 -->
+
+    <!-- banner开始 -->
+    <div class="column-banner banner-join">
+        <div class="txt-box animated fadeInUp">
+            <h2>加入我们</h2>
+            <p class="txt">文化，由你来创造！</p>
+        </div>
+    </div>
+    <!-- banner结束 -->
+
+    <div class="wrap clearfix pb40">
+        <!-- tab -->
+        <div class="tab-title2">
+            <a href="javascript:void(0)" onclick="selectJob(this,'CJ荣庆现场监理');">中高端岗位</a>
+            <a href="javascript:void(0)" onclick="selectJob(this,'CJ荣庆仓管员');">基层文职岗位</a>
+            <a href="javascript:void(0)" onclick="selectJob(this,'车');">基层操作岗位</a>
+            <a href="javascript:void(0)" onclick="selectJob(this,'经验不限');" class="active">全部岗位</a>
+        </div>
+        <!-- 筛选模块 -->
+        <div class="filter-box clearfix">
+            <div class="filter-item col-xs-12 col-sm-4">
+                <div class="inner-item">
+                    <div class="label">职位类别</div>
+                    <div class="input-item select-item">
+                        <div class="input-wrap">
+                            <div class="inner">
+                                <div class="drop-select" id="positionType">
+                                    <a href="javascript:void(0)" class="select-txt">请选择</a>
+                                    <div class="drop-cont">
+                                        <a href="javascript:void(0)">请选择</a>
+                                        <a href="javascript:void(0)">技术类</a>
+                                        <a href="javascript:void(0)">职能类</a>
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0)" class="search-btn">
+                                    <i class="arrow-down"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-item col-xs-12 col-sm-4">
+                <div class="inner-item">
+                    <div class="label">工作地点</div>
+                    <div class="input-item select-item">
+                        <div class="input-wrap">
+                            <div class="inner">
+                                <div class="drop-select" id="workLocation">
+                                    <a href="javascript:void(0)" class="select-txt">请选择</a>
+                                    <div class="drop-cont">
+                                        <a href="javascript:void(0)">请选择</a>
+                                        <a href="javascript:void(0)">广州省广州市</a>
+                                        <a href="javascript:void(0)">河北省三河市</a>
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0)" class="search-btn">
+                                    <i class="arrow-down"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-item col-xs-12 col-sm-4">
+                <div class="inner-item">
+                    <div class="label">搜索信息</div>
+                    <div class="input-item">
+                        <div class="input-wrap">
+                            <div class="inner">
+                                <input type="text" name="" id="txtKey" placeholder="请输入关键词" value="" class="input">
+                                <a href="javascript:void(0)" class="search-btn" id="goSearch">
+                                    <i class="icon-search-blue"></i>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 结果列表 -->
+        <div class="newsList">
+            <div class="order-table join-table" id="join-table">
+                <div class="inner">
+                    <table cellspacing="0" cellpadding="0" class="J-order-table">
+                        <thead>
+                            <tr>
+                                <th width="17%">职位名称 </th>
+                                <th width="10%">待遇 </th>
+                                <th width="18%">工作地点</th>
+                                <th width="14%">学历要求</th>
+                                <th width="16%">经验要求</th>
+                                <th width="12%">招聘人数</th>
+                                <th width="13%">发布时间</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 尾部开始 -->
+    <div id="footer"></div>
+    <!-- 尾部结束 -->
+
+    <!-- 悬浮窗开始 -->
+    <div id="return"></div>
+    <!-- 悬浮窗结束 -->
+    <script src="https://cdn.bootcss.com/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/public.js"></script>
+    <script src="js/join.js"></script>
+</body>
+
+</html>
